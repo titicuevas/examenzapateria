@@ -9,6 +9,12 @@ class Zapato extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'codigo',
+        'denominacion',
+        'precio',
+    ];
+
     public function carritos(){
 
         return $this->hasMany(Carrito::class);

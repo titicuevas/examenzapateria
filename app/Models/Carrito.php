@@ -25,7 +25,7 @@ class Carrito extends Model
      * @return \Illuminate\Database\    */
     public function zapato()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Zapato::class);
     }
 
 }
