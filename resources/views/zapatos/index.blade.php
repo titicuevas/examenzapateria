@@ -12,14 +12,14 @@
 
 
 
-                    <table class="table text-gray-400 border-separate space-y-6 text-sm">
+                    <table class="table text-neutral-900 border-separate space-y-6 text-sm text-center">
                         <thead class="bg-blue-500 text-white">
                             <tr>
-                                <th class="p-3">Id</th>
-                                <th class="p-3 text-left">Codigo</th>
-                                <th class="p-3 text-left">Denominacion</th>
-                                <th class="p-3 text-left">Precio</th>
-                                <th class="p-3 text-left">Añadir</th>
+                                <th class="p-3 text-align">Id</th>
+                                <th class="p-3 text-align">Codigo</th>
+                                <th class="p-3 text-align">Denominacion</th>
+                                <th class="p-3 text-align">Precio</th>
+                                <th class="p-3 text-align">Añadir</th>
 
 
                             </tr>
