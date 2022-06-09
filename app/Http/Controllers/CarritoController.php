@@ -18,7 +18,10 @@ class CarritoController extends Controller
     {
 
         $carritos = Auth::user()->carritos;
-        return $carritos;
+
+        return view('carritos.index', [
+            'carritos' => $carritos,
+        ]);
     }
 
     /**
