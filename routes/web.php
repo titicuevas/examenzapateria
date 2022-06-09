@@ -33,7 +33,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/carritos/meter/{zapato}', [CarritoController::class, 'meter'])
         ->name('carritos.meter');
 
-    
+    Route::post('/carrito/sumar/{carrito}', [CarritoController::class, 'sumar'])
+        ->name('carritos.sumar');
+
+    Route::post('/carrito/restar/{carrito}', [CarritoController::class, 'restar'])
+        ->name('carritos.restar');
+
+    Route::post('/carritos/vaciar', [CarritoController::class, 'vaciar'])
+        ->name('carritos.vaciar');
 });
 
 

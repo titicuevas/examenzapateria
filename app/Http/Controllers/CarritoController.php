@@ -18,7 +18,7 @@ class CarritoController extends Controller
     public function index()
     {
 
-        $carritos = Auth::user()->carritos;
+        $carritos = Auth::user()->carritos->sortBy('id');
 
         $total = 0;
         foreach ($carritos as $carrito ) {
@@ -29,6 +29,35 @@ class CarritoController extends Controller
             'carritos' => $carritos,
             'total' => $total,
         ]);
+    }
+
+    public function sumar(Carrito $carrito)
+    {
+        $carrito->cantidad++;
+        $carrito->save();
+
+        return back();
+    }
+
+    public function restar(Carrito $carrito)
+    {
+        if ($carrito->cantidad == 1) {
+            $carrito->delete();
+        } else {
+            $carrito->cantidad--;
+            $carrito->save();
+        }
+
+        return back();
+    }
+
+    public function vaciar()
+    {
+        $carrito = Carrito::where('user_id', '=', Auth::id());
+
+        $carrito->delete();
+
+        return redirect()->route('carritos.index');
     }
 
     /**

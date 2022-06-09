@@ -10,18 +10,43 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
+                   
                     {{-- {{$carritos}} --}}
-                    @foreach ($carritos as $carrito)
+                    @forelse ($carritos as $carrito)
                         {{ $carrito->zapato->denominacion }}---
                         {{ $carrito->zapato->precio }}€----
                         {{ $carrito->cantidad }}-----
                         {{ $carrito->cantidad * $carrito->zapato->precio }}€---
 
-                    
+
+                        <form action="{{route('carritos.restar', $carrito)}}" method="post">
+                            @csrf
+                            @method('POST')
+                            <button type="submit">-</button>
+
+                         </form>
+
+
+                        <form action="{{route('carritos.sumar', $carrito)}}" method="post">
+                            @csrf
+                            @method('POST')
+                            <button type="submit">+</button>
+
+                         </form>
+
                         <br>
-                    @endforeach
+                        @empty
+ no hay articulos
+                    @endforelse
                     <br>
-                    Total: {{ $total }}€
+                    <form action="{{route('carritos.vaciar')}}" method="post">
+                        @csrf
+                        @method('POST')
+                        <button type="submit">Vaciar carrito</button>
+
+                     </form>
+                    <br>
+                        Total: {{ $total }}€
 
                 </div>
             </div>
