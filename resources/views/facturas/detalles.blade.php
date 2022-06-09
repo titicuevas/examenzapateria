@@ -11,23 +11,34 @@
                 <div class="p-6 bg-white border-b border-gray-200">
 
 
-                    detalles factura con id : {{$factura->id}}
+                    <table class="table text-neutral-900 border-separate space-y-6 text-sm text-center">
+                        <thead class="bg-blue-500 text-white">
+                            <tr>
+                                <th class="p-3 text-align">Id</th>
+                                <th class="p-3 text-align">Denominacion</th>
+                                <th class="p-3 text-align">Precio</th>
+                                <th class="p-3 text-align">Cantidad</th>
 
-<br>
+                            </tr>
 
-                    @foreach ($factura->lineas as $linea)
-
-                    {{$linea->zapato_id}}---
-                    {{$linea->zapato->denominacion}}---
-                    {{$linea->zapato->precio}}€ ---
-                    {{$linea->cantidad}}---
-
-
-                    <br>
-
-                    @endforeach
+                        </thead>
 
 
+                        <br>
+                        <tbody>
+                            @foreach ($factura->lineas as $linea)
+                                <tr>
+                                    <td>{{ $linea->zapato_id }}</td>
+                                    <td>{{ $linea->zapato->denominacion }}</td>
+                                    <td>{{ $linea->zapato->precio }}€</td>
+                                    <td>{{ $linea->cantidad }}</td>
+
+
+
+                                </tr>
+                            @endforeach
+
+                        </tbody>
 
 
 
@@ -36,6 +47,3 @@
         </div>
     </div>
 </x-app-layout>
-
-
-
