@@ -30,7 +30,9 @@
                                     <td>{{ $factura->user->name }}</td>
                                     {{-- <td>{{ $factura->updated_at }}</td> --}}
 
-                                    <td><a href="{{ route('detalles.facturas', $factura) }}">Mostrar detalles</a>
+                                    <td> <button
+                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                                    <a href="{{ route('detalles.facturas', $factura) }}">Mostrar detalles</a></button>
                                     </td>
 
                                 </tr>
