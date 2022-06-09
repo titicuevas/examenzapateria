@@ -10,43 +10,80 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
-                   
-                    {{-- {{$carritos}} --}}
-                    @forelse ($carritos as $carrito)
-                        {{ $carrito->zapato->denominacion }}---
-                        {{ $carrito->zapato->precio }}€----
-                        {{ $carrito->cantidad }}-----
-                        {{ $carrito->cantidad * $carrito->zapato->precio }}€---
 
 
-                        <form action="{{route('carritos.restar', $carrito)}}" method="post">
-                            @csrf
-                            @method('POST')
-                            <button type="submit">-</button>
+                    <table class="table text-neutral-900 border-separate space-y-6 text-sm text-center">
+                        <thead class="bg-blue-500 text-white">
+                            <tr>
+                                <th class="p-3 text-align">Denominacion</th>
+                                <th class="p-3 text-align">Precio</th>
+                                <th class="p-3 text-align">Cantidad</th>
+                                <th class="p-3 text-align">Precio Total</th>
+                                <th class="p-3 text-align">Operaciones</th>
 
-                         </form>
+
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            {{-- {{$carritos}} --}}
+
+                            @forelse ($carritos as $carrito)
+                                <tr>
+                                    <td>{{ $carrito->zapato->denominacion }}</td>
+                                    <td>{{ $carrito->zapato->precio }}€</td>
+                                    <td>{{ $carrito->cantidad }}</td>
+                                    <td>{{ $carrito->cantidad * $carrito->zapato->precio }}€</td>
+
+                                    <td>
+
+                                        <form action="{{ route('carritos.restar', $carrito) }}" method="post">
+                                            @csrf
+                                            @method('POST')
+                                            <button
+                                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
+                                                -
+                                            </button>
+                                            <br>
+
+                                        </form>
 
 
-                        <form action="{{route('carritos.sumar', $carrito)}}" method="post">
-                            @csrf
-                            @method('POST')
-                            <button type="submit">+</button>
 
-                         </form>
 
-                        <br>
-                        @empty
- no hay articulos
-                    @endforelse
+
+
+
+
+                                        <br>
+                                        <form action="{{ route('carritos.sumar', $carrito) }}" method="post">
+                                            @csrf
+                                            @method('POST')
+                                            <button
+                                                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                                                +
+                                            </button>
+
+                                        </form>
+                                    </td>
+                                </tr>
+                                <br>
+                            @empty
+                                no hay articulos
+                            @endforelse
+
+                        </tbody>
+                    </table>
                     <br>
-                    <form action="{{route('carritos.vaciar')}}" method="post">
+                    <form action="{{ route('carritos.vaciar') }}" method="post">
                         @csrf
                         @method('POST')
                         <button type="submit">Vaciar carrito</button>
 
-                     </form>
+                    </form>
                     <br>
-                        Total: {{ $total }}€
+                    Total: {{ $total }}€
+
 
                 </div>
             </div>
