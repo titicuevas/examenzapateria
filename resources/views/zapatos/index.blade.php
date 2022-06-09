@@ -1,8 +1,7 @@
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Zapatos') }}
         </h2>
     </x-slot>
 
@@ -11,21 +10,45 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
-                    {{-- {{$zapatos}} --}}
 
-                    @foreach ($zapatos as $zapato)
-                    {{$zapato->denominacion}}
-                     ==={{$zapato->precio}}€
 
-                     <form action="{{route('carritos.meter', $zapato)}}" method="post">
-                        @csrf
-                        @method('POST')
-                        <button type="submit">Añadir</button>
+                    <table class="table text-gray-400 border-separate space-y-6 text-sm">
+                        <thead class="bg-blue-500 text-white">
+                            <tr>
+                                <th class="p-3">Id</th>
+                                <th class="p-3 text-left">Codigo</th>
+                                <th class="p-3 text-left">Denominacion</th>
+                                <th class="p-3 text-left">Precio</th>
+                                <th class="p-3 text-left">Añadir</th>
 
-                     </form>
 
-                    <br>
-                    @endforeach
+                            </tr>
+                        </thead>
+                        {{-- {{$zapatos}} --}}
+
+                        <tbody>
+                            @foreach ($zapatos as $zapato)
+                                <tr>
+                                    <td>{{ $zapato->id }}</td>
+                                    <td>{{ $zapato->codigo }}</td>
+                                    <td>{{ $zapato->denominacion }}</td>
+                                    <td>{{ $zapato->precio }}</td>
+
+                                    <td>
+                                        <form action="{{ route('carritos.meter', $zapato) }}" method="post">
+                                            @csrf
+                                            @method('POST')
+                                            <button type="submit">Añadir</button>
+
+                                        </form>
+                                    </td>
+
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+
 
 
 

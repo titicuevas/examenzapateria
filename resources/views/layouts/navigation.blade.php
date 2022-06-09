@@ -23,6 +23,20 @@
                         Ver Carrito ({{ Auth::user()->carritos->sum('cantidad') }})
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('mostrar.facturas')" :active="request()->routeIs('mostrar.facturas')">
+                        mostrar.facturas
+                    </x-nav-link>
+                </div>
+
+
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('zapatos.index')" :active="request()->routeIs('zapatos.index')">
+                        Zapatos
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

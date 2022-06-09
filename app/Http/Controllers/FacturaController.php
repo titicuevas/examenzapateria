@@ -5,9 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreFacturaRequest;
 use App\Http\Requests\UpdateFacturaRequest;
 use App\Models\Factura;
+use Illuminate\Support\Facades\Auth;
 
 class FacturaController extends Controller
 {
+
+    public function mostrar()
+    {
+
+        $facturas = Factura::where('user_id',Auth::id())->get();
+        //$facturas = Factura::all();
+
+        return view('facturas.mostrar',['facturas'=>$facturas]);
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +26,7 @@ class FacturaController extends Controller
      */
     public function index()
     {
-        //
+        return 'facturas.index';
     }
 
     /**
@@ -82,5 +93,16 @@ class FacturaController extends Controller
     public function destroy(Factura $factura)
     {
         //
+    }
+
+    public function mostrardetalles(Factura $factura){
+
+        //$lineas = $factura->lineas;
+
+
+        return view('facturas.detalles',[
+            'factura'=>$factura,
+        ]);
+
     }
 }

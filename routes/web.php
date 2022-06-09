@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ZapatoController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,8 +42,18 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/carritos/vaciar', [CarritoController::class, 'vaciar'])
         ->name('carritos.vaciar');
+
+
+    Route::get('/facturas',[FacturaController::class,'mostrar'])
+        ->name('mostrar.facturas');
+
+    route::get('/facturas/lineas/{factura}',[FacturaController::class,'mostrardetalles'])
+    ->name('detalles.facturas');
 });
 
 
 
 require __DIR__.'/auth.php';
+
+Route::resource('zapatos',ZapatoController::class);
+
